@@ -1,0 +1,59 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Definizione della classe ContoBancario
+class ContoBancario {
+public:
+    // Costruttore della classe ContoBancario
+    ContoBancario(string nome, double saldo_iniziale) : nomeCliente(nome), saldo(saldo_iniziale) {}
+
+    // Metodo per visualizzare il saldo corrente
+    void visualizzaSaldo() const {
+        cout << "Saldo attuale per " << nomeCliente << ": " << saldo << " euro" << endl;
+    }
+
+    // Metodo per depositare denaro sul conto
+    void deposita(double importo) {
+        saldo += importo;
+        cout << "Deposito di " << importo << " euro effettuato con successo." << endl;
+    }
+
+    // Metodo per prelevare denaro dal conto
+    void preleva(double importo) {
+        if (saldo >= importo) {
+            saldo -= importo;
+            cout << "Prelievo di " << importo << " euro effettuato con successo." << endl;
+        } else {
+            cout << "Saldo insufficiente per effettuare il prelievo." << endl;
+        }
+    }
+
+private:
+    string nomeCliente;
+    double saldo;
+};
+
+// Funzione principale
+int main() {
+    // Creazione di un conto bancario con un saldo iniziale
+    ContoBancario mioConto("Mario Rossi", 1000.0);
+
+    // Visualizzazione del saldo iniziale
+    mioConto.visualizzaSaldo();
+
+    // Effettuare un deposito
+    mioConto.deposita(500.0);
+
+    // Visualizzare il saldo dopo il deposito
+    mioConto.visualizzaSaldo();
+
+    // Effettuare un prelievo
+    mioConto.preleva(200.0);
+
+    // Visualizzare il saldo dopo il prelievo
+    mioConto.visualizzaSaldo();
+
+    return 0;
+}
